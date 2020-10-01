@@ -16,7 +16,9 @@
     <div
       class="flex items-center justify-between px-4 py-2 bg-gray-900 mt-auto"
     >
-      <p class="text-gray-200 font-bold text-md">£{{ product.price.min }}</p>
+      <p class="text-gray-200 font-bold text-md">
+        {{ product.price.min | toCurrency }}
+      </p>
       <a
         :href="product.link"
         target="_blank"

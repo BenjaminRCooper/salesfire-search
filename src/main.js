@@ -15,6 +15,16 @@ const store = new Vuex.Store({
   },
 });
 
+Vue.filter("toCurrency", (value) => {
+  const formatter = new Intl.NumberFormat("en-GB", {
+    style: "currency",
+    currency: "GBP",
+    minimumFractionDigits: 0,
+  });
+
+  return formatter.format(value);
+});
+
 Vue.prototype.$store = store;
 
 new Vue({
