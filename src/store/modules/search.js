@@ -6,12 +6,18 @@ const initialState = {
 const actions = {
   async getResults({ commit }, query = "") {
     commit("LOADING", true);
-    const request = await fetch(
-      `https://aix.salesfire.co.uk/api/searcha?client_id=3f32397c-21c6-47e5-9ebd-e9865ea03470&limit=50&query=${query}`
-    );
-    const response = await request.json();
+    try {
+      const request = await fetch(
+        `https://aix.salesfire.co.uk/api/searcha?client_id=3f32397c-21c6-47e5-9ebd-e9865ea03470&limit=50&query=${query}`
+      );
+      const response = await request.json();
 
-    commit("SET_RESULTS", response.products);
+      commit("SET_RESULTS", response.products);
+    } catch (err) {
+      console.log(err);
+    } finally {
+      commit("LOADING");
+    }
   },
 };
 
